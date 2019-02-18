@@ -1,0 +1,70 @@
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Récupération Données GPS</title>
+	<!-- Bootstrap stuff -->
+	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+	<script src="script.js"></script>
+	<style>
+		* {
+			text-decoration: none;
+		}
+
+		h1,
+		h2,
+		div,
+		.container-center {
+			text-align: center;
+		}
+
+		h2 {
+			display: none;
+		}
+
+		button{
+			width: 300px;
+			height: 75px;
+			border-radius: 15px;
+			font-weight: bold;
+			background-color: blue;
+			background-color: #41bcff66;
+			font-size: 18px;
+		}
+
+		button:hover{
+			border: 4px solid black;
+			font-size: 20px;
+		}
+		
+	</style>
+
+</head>
+
+<body>
+	<h1>Récupération Données GPS</h1>
+	<h2>EPID CONNECTION START ...</h2>
+	<br>
+	<div class="container-center">
+		<button id="testButton">TEST</button>
+		<button id="startButton">Lancement du programme</button>
+	</div>
+
+	<div id="mapTest"></div>
+	<div id="currentPostion"></div>
+
+	<br>
+	<div class="container-center">
+		<video controls id="video-test">
+			<source src="video1-test.mp4" type="video/mp4">
+			<source src="video1-test.ogg" type="video/ogg">
+			Votre navigateur n'est pas compatible avec les vidéos
+		</video>
+	</div>
+
+</body>
+
+</html>
