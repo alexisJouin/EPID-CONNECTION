@@ -3,23 +3,28 @@ $(document).ready(function() {
   //Tableau des points test
   var tab_coord = [{
       name: "Point A",
-      longitude: 51.034508, //Au feu rouge 110e régiment
-      latitude: 2.386078
+      latitude: 51.034508, //Au feu rouge 110e régiment
+      longitude: 2.386078
     },
     {
       name: "Point B",
-      longitude: 51.024045, // Au carrefour pour aller à gauche à cora à droite vers l'EPID
-      latitude: 2.375532
+      latitude: 51.024045, // Au carrefour pour aller à gauche à cora à droite vers l'EPID
+      longitude: 2.375532
     },
     {
       name: "CORA",
-      "longitude": 51.016328, //CORA
-      "latitude": 2.379056
+      latitude: 51.016328, //CORA
+      longitude: 2.379056
     },
     {
       name: "Point C",
-      longitude: 51.040706,
-      latitude: 2.388800
+      latitude: 51.040706,
+      longitude: 2.388800
+    },
+    {
+      name: "Point D",
+      latitude : 51.040697,
+      longitude : 2.388865
     }
   ];
 
@@ -60,14 +65,14 @@ $(document).ready(function() {
     currentPostion.append(`<br>La précision est de ${crd.accuracy} mètres.`);
 
     //Arrondir à 0.0000001
-    crd.latitude = Math.round(crd.latitude * 1000000) / 1000000;
-    crd.longitude = Math.round(crd.longitude * 1000000) / 1000000;
+    var c_latitude = Math.round(crd.latitude * 1000000) / 1000000;
+    var c_longitude = Math.round(crd.longitude * 1000000) / 1000000;
 
     //Tableau de la position courrante
     var tab_currentPostion = {
       name: "current_position",
-      longitude: crd.longitude,
-      latitude: crd.latitude
+      latitude: c_latitude,
+      longitude: c_longitude
     };
 
     console.log(tab_currentPostion); //Affichage dans la console
