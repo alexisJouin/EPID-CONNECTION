@@ -42,6 +42,7 @@ $(document).ready(function() {
 
   //Fonction Si le GPS fonctionne
   function success(pos) {
+    console.log(pos);
     var crd = pos.coords;
     CountDeplacement++;
 
@@ -53,12 +54,12 @@ $(document).ready(function() {
     console.log(`La précision est de ${crd.accuracy} mètres.`);
 
     // //Affichage dans la page WEB
-    // currentPostion.html('<br><u>Votre position actuelle est </u>:');
-    // currentPostion.append("<br>Itération :  " + CountDeplacement);
-    // currentPostion.append("<br><b>Itération Matching :  " + CountMatching + "</b>");
-    // currentPostion.append(`<br>Latitude : <b>${crd.latitude}</b>`);
-    // currentPostion.append(`<br>Longitude : <b>${crd.longitude}</b>`);
-    // currentPostion.append(`<br>La précision est de ${crd.accuracy} mètres.`);
+    currentPostion.html('<br><u>Votre position actuelle est </u>:');
+    currentPostion.append("<br>Itération :  " + CountDeplacement);
+    currentPostion.append("<br><b>Itération Matching :  " + CountMatching + "</b>");
+    currentPostion.append(`<br>Latitude : <b>${crd.latitude}</b>`);
+    currentPostion.append(`<br>Longitude : <b>${crd.longitude}</b>`);
+    currentPostion.append(`<br>La précision est de ${crd.accuracy} mètres.`);
 
     //Arrondir à 0.000001
     var c_latitude = Math.round(crd.latitude * 1000000) / 1000000;
@@ -84,8 +85,8 @@ $(document).ready(function() {
   /*TEST SI ON EST DANS LA ZONE définit par les points définits*/
   function testMatchingZone(tab_currentPostion) {
 
-    var res1 = isInsideTriangle(a, b, c, tab_currentPostion);
-    var res2 = isInsideTriangle(d, e, f, tab_currentPostion);
+    var res1 = isInsidePolygon(home, tab_currentPostion);
+    var res2 = isInsidePolygon(epid, tab_currentPostion);
     switch (true) {
       case res1: //DOMICILE (PAUL VERLEY)
         if (zone == "domicile") {//SI TOUJOURS DANS LA MEME ZONE

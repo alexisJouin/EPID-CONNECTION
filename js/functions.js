@@ -1,47 +1,80 @@
 //Variables globales
 //Test : points définissant une zone
 //Domicile abc
-var a = {
-  x: 51.0417,
-  y: 2.38875
+var a1 = {
+  x: 51.04132,
+  y: 2.38814
 };
-var b = {
+var b1 = {
   x: 51.04033,
   y: 2.38783
 };
-var c = {
+var c1 = {
   x: 51.04003,
   y: 2.39016
 };
+var d1 = {
+  x: 51.04137,
+  y: 2.3902
+};
 var home = {
-  a: a,
-  b: b,
-  c: c
+  a: a1,
+  b: b1,
+  c: c1,
+  d: d1
 }
 //Stade Tribut
-var d = {
-  x: 51.03668,
-  y: 2.38875
+// var d = {
+//   x: 51.03668,
+//   y: 2.38875
+// };
+// var e = {
+//   x: 51.03441,
+//   y: 2.38641
+// };
+// var f = {
+//   x: 51.0336,
+//   y: 2.39109
+// };
+// var tribut = {
+//   a: d,
+//   b: e,
+//   c: f
+// }
+
+
+var a2 = {
+  x: 51.02741,
+  y: 2.37042
 };
-var e = {
-  x: 51.03441,
-  y: 2.38641
+var b2 = {
+  x: 51.02759,
+  y: 2.37258
 };
-var f = {
-  x: 51.0336,
-  y: 2.39109
+var c2 = {
+  x: 51.02587,
+  y: 2.37325
 };
-var tribut = {
-  a: d,
-  b: e,
-  c: f
+var d2 = {
+  x: 51.02577,
+  y: 2.37127
+};
+var epid = {
+  a: a2,
+  b: b2,
+  c: c2,
+  d: d2
 }
 
+
+
 //Point X test
-var X = {
-  x: 51.04154,
-  y: 2.39094
-};
+// var X = {
+//   x: 51.04154,
+//   y: 2.39094
+// };
+
+
 
 var CountDeplacement = 0;
 var CountMatching = 0;
@@ -70,22 +103,40 @@ var options = {
 // chaque point défini par ses coordonnées X,Y ...*/
 function isLeft(p1, p2, newp) {
   var result = (p2.x - p1.x) * (newp.y - p1.y) - (newp.x - p1.x) * (p2.y - p1.y);
-  // console.log(result);
+  console.log(result);
   return result;
 };
 
 /* Teste si point H est intérieur au Triangle ABC.
 // Méthode: Test si H et C sont a gauche de AB,
 // ou pas, mais en meme temps*/
-function isInsideTriangle(A, B, C, H) {
+// function isInsideTriangle(A, B, C, H) {
+//   var result = false;
+//   if (isLeft(C, A, H) * isLeft(C, A, B) > 0 &&
+//     isLeft(A, B, H) * isLeft(A, B, C) > 0 &&
+//     isLeft(C, B, H) * isLeft(C, B, A) > 0) {
+//     result = true;
+//   }
+//   return result;
+// };
+
+
+function isInsidePolygon(points, H) {
   var result = false;
-  if (isLeft(C, A, H) * isLeft(C, A, B) > 0 &&
-    isLeft(A, B, H) * isLeft(A, B, C) > 0 &&
-    isLeft(C, B, H) * isLeft(C, B, A) > 0) {
+  var A = points.a;
+  var B = points.b;
+  var C = points.c;
+  var D = points.d;
+
+  if (isLeft(B, A, H) * isLeft(C, B, A) >= 0 &&
+    isLeft(A, D, H) * isLeft(A, D, C) >= 0 &&
+    isLeft(D, C, H) * isLeft(D, C, B) >= 0 &&
+    isLeft(C, B, H) * isLeft(C, B, A) >= 0) {
     result = true;
   }
   return result;
 };
+
 
 
 

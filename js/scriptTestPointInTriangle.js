@@ -46,3 +46,26 @@ if (res) {
 } else {
   console.log("Le point X(" + X.x + ";" + X.y + ") n'est pas dans le triangle ABC :'( ")
 }
+
+
+// var a = {
+//   x: 1,
+//   y: 1
+// };
+// var b = {
+//   x: 2,
+//   y: 4
+// };
+// var c = {
+//   x: 3,
+//   y: 3.5
+// };
+// var d = {
+//   x: 2,
+//   y: 0
+// };
+//
+// var X = {
+//   x: 2,
+//   y: 0.00000
+// };
