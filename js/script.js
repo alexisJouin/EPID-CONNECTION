@@ -1,14 +1,17 @@
 $(document).ready(function() {
 
+  /*
+   *** TEST ***
+   */
+  // console.log("TEST gare : " + isInsidePolygon(gare, X));
+
 
 
   //Récupération de l'élément html video
   var video = document.getElementById('video');
+  //Création de l'élément html pour la "future" source de la vidéo
   var source = document.createElement('source');
 
-  var testButton1 = $('#testButton1');
-  var testButton2 = $('#testButton2');
-  var testButton3 = $('#testButton3');
   var startButton = $('#startButton');
   var listInfos = $('#mapTest');
   var currentPostion = $('#currentPostion');
@@ -26,23 +29,9 @@ $(document).ready(function() {
     toggleFullScreen(document.body);
   });
 
-  //Event Test 1
-  testButton1.click(function() {
-    setVideo("domicile");
-  });
-  //Event Test 2
-  testButton2.click(function() {
-    setVideo("tribut");
-  });
-  //Event Test 3
-  testButton3.click(function() {
-    setVideo("video2-test")
-  });
-
-
   //Fonction Si le GPS fonctionne
   function success(pos) {
-    console.log(pos);
+    //console.log(pos);
     var crd = pos.coords;
     CountDeplacement++;
 
@@ -71,9 +60,9 @@ $(document).ready(function() {
       y: c_longitude
     };
 
-    console.log(tab_currentPostion); //Affichage dans la console
+    //console.log(tab_currentPostion); //Affichage dans la console
 
-    testMatchingZone(tab_currentPostion);
+    testMatchingZone(tab_currentPostion);//Test zone
 
   }
 
@@ -87,34 +76,74 @@ $(document).ready(function() {
 
     var res1 = isInsidePolygon(home, tab_currentPostion);
     var res2 = isInsidePolygon(epid, tab_currentPostion);
+    var res3 = isInsidePolygon(gare, tab_currentPostion);
+    var res4 = isInsidePolygon(poleMarine, tab_currentPostion);
+
     switch (true) {
       case res1: //DOMICILE (PAUL VERLEY)
-        if (zone == "domicile") {//SI TOUJOURS DANS LA MEME ZONE
+        if (zone == "domicile") { //SI TOUJOURS DANS LA MEME ZONE
           alwaysSameZone = true;
-          if(!video.playing){
+          if (!video.playing) {
             video.play();
           }
-        } else {//SI on arrive la 1ère fois dans la zone
+        } else { //SI on arrive la 1ère fois dans la zone
           alwaysSameZone = false;
           zone = "domicile";
           setVideo(zone);
-          testCpt++;
         }
         CountMatching++;
         CountMatchingDomicile++;
         $("#CountMatchingDomicile").html(CountMatchingDomicile);
-        console.log("Matching with coords (" + CountMatching + ")");
         console.log("MATCHING Domicile :  " + CountMatchingDomicile);
-        console.log("TESTe :  " + testCpt);
-
         break;
-      case res2: //Stade Tribut
+      case res2: //EPID
+        if (zone == "epid") { //SI TOUJOURS DANS LA MEME ZONE
+          alwaysSameZone = true;
+          if (!video.playing) {
+            video.play();
+          }
+        } else { //SI on arrive la 1ère fois dans la zone
+          alwaysSameZone = false;
+          zone = "epid";
+          setVideo(zone);
+        }
         CountMatching++;
-        CountMatchingTribut++;
-        $("#CountMatchingTribut").html(CountMatchingTribut);
-        console.log("Matching with coords (" + CountMatching + ")");
-        console.log("MATCHING Tribut :  " + CountMatchingTribut);
-        setVideo("tribut");
+        CountMatchingEPID++;
+        $("#CountMatchingEPID").html(CountMatchingEPID);
+        console.log("MATCHING EPID :  " + CountMatchingEPID);
+        break;
+
+      case res3: //Gare
+        if (zone == "gare") { //SI TOUJOURS DANS LA MEME ZONE
+          alwaysSameZone = true;
+          if (!video.playing) {
+            video.play();
+          }
+        } else { //SI on arrive la 1ère fois dans la zone
+          alwaysSameZone = false;
+          zone = "gare";
+          setVideo(zone);
+        }
+        CountMatching++;
+        CountMatchingGare++;
+        $("#CountMatchingGare").html(CountMatchingGare);
+        console.log("MATCHING gare :  " + CountMatchingGare);
+        break;
+      case res4: //Pole Marine
+        if (zone == "poleMarine") { //SI TOUJOURS DANS LA MEME ZONE
+          alwaysSameZone = true;
+          if (!video.playing) {
+            video.play();
+          }
+        } else { //SI on arrive la 1ère fois dans la zone
+          alwaysSameZone = false;
+          zone = "poleMarine";
+          setVideo(zone);
+        }
+        CountMatching++;
+        CountMatchingPoleMarine++;
+        $("#CountMatchingPoleMarine").html(CountMatchingPoleMarine);
+        console.log("MATCHING Pole Marine :  " + CountMatchingPoleMarine);
         break;
     }
   };
