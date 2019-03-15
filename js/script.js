@@ -6,7 +6,7 @@ $(document).ready(function() {
   // console.log("TEST gare : " + isInsidePolygon(gare, X));
 
 
-
+  
   //Récupération de l'élément html video
   var video = document.getElementById('video');
   //Création de l'élément html pour la "future" source de la vidéo

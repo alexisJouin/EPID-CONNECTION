@@ -1,5 +1,4 @@
 * {
-  text-decoration: none;
   font-family: arial;
 }
 
@@ -7,6 +6,7 @@ h1,
 h2,
 p,
 div,
+table,
 .container-center {
   text-align: center;
 }

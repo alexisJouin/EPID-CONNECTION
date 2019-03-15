@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Récupération Données GPS</title>
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/zones.js"></script>
+  <script src="js/functions.js"></script>
+  <script src="js/script.js"></script>
+  <style>
+    .container-admin {
+      background-color: white;
+    }
+
+    table {
+      display: inline-grid;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+</head>
+
+<body>
+  <div class="container-admin">
+    <h1>Récupération Données GPS - Mode Administrateur  </h1>
+    <h2>Programme Lancé ...</h2>
+    <br>
+
+    <div class="container-center">
+      <button id="startButton">Lancement du programme</button>
+    </div>
+
+    <div id="mapTest"></div>
+    <div id="currentPostion"></div>
+
+    <br>
+    <br>
+    <br>
+    <div class="container-center">
+      <table>
+        <tr>
+          <th>Zone</th>
+          <th>Compteur</th>
+        </tr>
+        <tr>
+          <td>Domicile</td>
+          <td><span id="CountMatchingDomicile">0</span></td>
+        </tr>
+        <tr>
+          <td>EPID</td>
+          <td><span id="CountMatchingEPID">0</span></td>
+        </tr>
+        <tr>
+          <td>Gare</td>
+          <td><span id="CountMatchingGare">0</span></td>
+        </tr>
+        <tr>
+          <td>Pôle Marine</td>
+          <td><span id="CountMatchingPoleMarine">0</span></td>
+        </tr>
+
+      </table>
+    </div>
+
+    <br>
+
+    <div class="container-center" style="display: none;">
+      <video controls muted loop id="video"></video>
+    </div>
+  </div>
+
+</body>
+
+</html>
