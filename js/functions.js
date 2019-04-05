@@ -1,4 +1,5 @@
 var CountDeplacement = 0;
+var countByZone = 0;
 var CountMatching = 0;
 var CountMatchingDomicile = 0;
 var CountMatchingEPID = 0;
@@ -21,7 +22,7 @@ var options = {
 // NB : surface du triangle = Isleft / 2 .
 // chaque point défini par ses coordonnées X,Y ...*/
 function isLeft(p1, p2, newp) {
-  var result = (p2.x - p1.x) * (newp.y - p1.y) - (newp.x - p1.x) * (p2.y - p1.y);
+  var result = (p2.longitude - p1.longitude) * (newp.latitude - p1.latitude) - (newp.longitude - p1.longitude) * (p2.latitude - p1.latitude);
   return result;
 };
 
@@ -43,10 +44,10 @@ function isInsideTriangle(A, B, C, H) {
 // ou pas, mais en meme temps*/
 function isInsidePolygon(points, H) {
   var result = false;
-  var A = points.a;
-  var B = points.b;
-  var C = points.c;
-  var D = points.d;
+  var A = points.pointA;
+  var B = points.pointB;
+  var C = points.pointC;
+  var D = points.pointD;
 
   if (isLeft(B, A, H) * isLeft(C, B, A) >= 0 &&
     isLeft(A, D, H) * isLeft(A, D, C) >= 0 &&

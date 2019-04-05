@@ -1,5 +1,4 @@
-var zones = {
-
+{
 	"zone1": {
 		"video": "polemarine-video.mp4",
 		"titre": "polemarine",
@@ -23,7 +22,6 @@ var zones = {
 			}
 		}
 	},
-
 	"zone2": {
 		"video": "gare-video.mp4",
 		"titre": "gare",
@@ -116,6 +114,7 @@ var zones = {
     }
   },
 
+
 	"zone6": {
 		"video": "ecole-musical-de-musique-video.mp4",
 		"titre": "ecole-musical-de-musique",
@@ -185,27 +184,8 @@ var zones = {
 		}
 	},
 
-	"zone8": {
-		"video": "domicile-video.mp4",
-		"titre": "domicile-prof",
-		"points": {
-			"pointA": {
-				"longitude": "51.04132",
-				"latitude": "2.38814"
-			},
-			"pointB": {
-				"longitude": "51.04033",
-				"latitude": "2.38783"
-			},
-			"pointC": {
-				"longitude": "51.04003",
-				"latitude": "2.39016"
-			},
-			"pointD": {
-				"longitude": "51.04137",
-				"latitude": "2.3902"
-			}
-		}
-	}
-
+	"permissions": [
+	  "http://www.google.com/",
+	  "https://www.google.com/"
+	]
 }

@@ -3,10 +3,17 @@ $(document).ready(function() {
   /*
    *** TEST ***
    */
+  //console.log(zones);
+  $.each(zones, function(index, data) {
+    console.log(index + " : " + data.titre);
+    // console.log(data.points);
+    // console.log(data.points.pointA.longitude);
+    // console.log(data.points.pointB.latitude);
+  });
   // console.log("TEST gare : " + isInsidePolygon(gare, X));
 
 
-  
+
   //Récupération de l'élément html video
   var video = document.getElementById('video');
   //Création de l'élément html pour la "future" source de la vidéo
@@ -56,13 +63,13 @@ $(document).ready(function() {
 
     //Tableau de la position courrante
     var tab_currentPostion = {
-      x: c_latitude,
-      y: c_longitude
+      longitude: c_latitude,
+      latitude: c_longitude
     };
 
-    //console.log(tab_currentPostion); //Affichage dans la console
+    console.log(tab_currentPostion); //Affichage dans la console
 
-    testMatchingZone(tab_currentPostion);//Test zone
+    testMatchingZone(tab_currentPostion); //Test zone
 
   }
 
@@ -71,14 +78,39 @@ $(document).ready(function() {
     console.warn(`ERREUR (${err.code}): ${err.message}`);
   }
 
-  /*TEST SI ON EST DANS LA ZONE définit par les points définits*/
+  /*TEST SI ON EST DANS LA ZONE définit par les points définits dans zones.js*/
   function testMatchingZone(tab_currentPostion) {
 
+    $.each(zones, function(index, data) {
+      if (isInsidePolygon(data.points, tab_currentPostion)) {
+        console.log("dans la " + index);
+        console.log(data.titre);
+        if (zone == data.titre) { //SI TOUJOURS DANS LA MEME ZONE
+          alwaysSameZone = true;
+          countByZone++;
+          if (!video.playing) {
+            video.play();
+          }
+        } else { //SI on arrive la 1ère fois dans la zone
+          alwaysSameZone = false;
+          zone = data.titre;
+          setVideo(data.video);
+          console.log("VIDEO" + data.video)
+          countByZone++;
+        }
+        CountMatching++;
+        $('#' + data.titre).html(countByZone);
+      }
+    });
+
+    /*
     var res1 = isInsidePolygon(home, tab_currentPostion);
     var res2 = isInsidePolygon(epid, tab_currentPostion);
     var res3 = isInsidePolygon(gare, tab_currentPostion);
     var res4 = isInsidePolygon(poleMarine, tab_currentPostion);
+    */
 
+    /*
     switch (true) {
       case res1: //DOMICILE (PAUL VERLEY)
         if (zone == "domicile") { //SI TOUJOURS DANS LA MEME ZONE
@@ -146,7 +178,16 @@ $(document).ready(function() {
         console.log("MATCHING Pole Marine :  " + CountMatchingPoleMarine);
         break;
     }
+    */
   };
+
+
+
+
+
+
+
+
 
   //Clean video avant de lancer la nouvelle vidéo
   function cleanVideo() {
@@ -161,7 +202,7 @@ $(document).ready(function() {
     if (!video.playing) { //Si la vidéo n'a pas encore démarrée OU STOP
       cleanVideo();
       $('video').show(200);
-      source.setAttribute('src', 'medias/videos/' + nom + '-video.mp4');
+      source.setAttribute('src', 'medias/videos/' + nom);
       video.appendChild(source);
       video.play();
 
